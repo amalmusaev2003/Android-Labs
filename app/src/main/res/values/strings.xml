@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MyFirstApp</string>
+    <string name="register_tv">Регистрация</string>
+    <string name="username_et">Имя пользователя</string>
+    <string name="password_et">Пароль</string>
+    <string name="register_agreements">Я согласен с условиями</string>
+    <string name="register_btn">Зарегистрироваться</string>
+    <string name="login_tw">Вход в систему</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Пароль</string>
+    <string name="login_btn">Войти</string>
+    <string name="login_checkbox">Входить автоматически</string>
+    <string name="by_phone_btn">По номеру</string>
+    <string name="by_email_btn">По email</string>
+    <string name="email_et">Email</string>
+</resources>

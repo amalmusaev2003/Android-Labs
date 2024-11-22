@@ -3,6 +3,7 @@
     <string name="register_tv">Регистрация</string>
     <string name="username_et">Имя пользователя</string>
     <string name="password_et">Пароль</string>
+    <string name="password_confirmation_et">Подтвердите пароль</string>
     <string name="register_agreements">Я согласен с условиями</string>
     <string name="register_btn">Зарегистрироваться</string>
     <string name="login_tw">Вход в систему</string>
@@ -13,4 +14,13 @@
     <string name="by_phone_btn">По номеру</string>
     <string name="by_email_btn">По email</string>
     <string name="email_et">Email</string>
+    <string name="title_activity_spalsh">SpalshActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

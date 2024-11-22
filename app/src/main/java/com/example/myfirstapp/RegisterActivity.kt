@@ -1,6 +1,7 @@
 package com.example.myfirstapp
 
-import android.graphics.Color
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.InputType
 import android.widget.Button
@@ -10,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
 class RegisterActivity : AppCompatActivity() {
-
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
+    private lateinit var confirmationPasswordEditText: EditText
     private lateinit var registerButton: Button
     private lateinit var byPhoneButton: Button
     private lateinit var byEmailButton: Button
@@ -25,6 +26,7 @@ class RegisterActivity : AppCompatActivity() {
 
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
+        confirmationPasswordEditText = findViewById(R.id.confirmationPasswordEditText)
         registerButton = findViewById(R.id.registerButton)
         byPhoneButton = findViewById(R.id.by_phone_button)
         byEmailButton = findViewById(R.id.by_email_button)
@@ -61,9 +63,14 @@ class RegisterActivity : AppCompatActivity() {
         emailEditText.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
     }
 
+    private fun confirmPassword(password: String, confirmationPassword: String): Boolean {
+        return password == confirmationPassword
+    }
+
     private fun validateFields() {
         val emailOrPhone = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
+        val confirmationPassword = confirmationPasswordEditText.text.toString()
 
         if (isPhoneSelected) {
             if (!emailOrPhone.startsWith("+")) {
@@ -82,6 +89,23 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        // Если все корректно, не происходит никаких действий
+        if (!confirmPassword(password, confirmationPassword)) {
+            Toast.makeText(this, "Пароли должны совпадать", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Если все данные корректны, сохраняем в SharedPreferences и переходим в ContentActivity
+        saveToPreferences(emailOrPhone, password)
+        startActivity(Intent(this, ContentActivity::class.java))
+        finish()
+    }
+
+    private fun saveToPreferences(emailOrPhone: String, password: String) {
+        val sharedPreferences: SharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("email", emailOrPhone)
+        editor.putString("password", password)
+        editor.putBoolean("autoLogin", false) // По умолчанию авто-вход выключен
+        editor.apply()
     }
 }
